@@ -1,0 +1,27 @@
+automarket:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: /tmp/automarket_dev.duckdb
+      threads: 4
+      # En dev : lire les Parquet Silver depuis S3 local via DuckDB + httpfs
+      extensions:
+        - httpfs
+        - parquet
+      settings:
+        s3_endpoint: "localhost:4566"
+        s3_access_key_id: "test"
+        s3_secret_access_key: "test"
+        s3_region: "eu-west-1"
+        s3_use_ssl: false
+        s3_url_style: path
+
+    prod:
+      # En prod : AWS Athena ou Redshift Spectrum
+      type: athena
+      region_name: eu-west-1
+      s3_staging_dir: "s3://automarket-prod-gold/athena-results/"
+      database: automarket_dw
+      schema: marts
+      threads: 4

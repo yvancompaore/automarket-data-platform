@@ -1,0 +1,61 @@
+version: 2
+
+models:
+  - name: stg_parts_catalog
+    description: "Staging catalogue pièces auto — nettoyage et normalisation depuis Silver S3"
+    columns:
+      - name: part_id
+        description: "Identifiant unique de la pièce"
+        tests:
+          - not_null
+          - unique
+      - name: part_number
+        description: "Référence commerciale de la pièce"
+        tests:
+          - not_null
+      - name: price_eur
+        description: "Prix en euros"
+        tests:
+          - not_null
+      - name: availability
+        description: "Disponibilité : in_stock, on_order, discontinued"
+        tests:
+          - accepted_values:
+              values: ["in_stock", "on_order", "discontinued"]
+      - name: brand_type
+        description: "Type de marque : OEM ou COMPAT"
+        tests:
+          - accepted_values:
+              values: ["OEM", "COMPAT"]
+
+  - name: stg_market_listings
+    description: "Staging annonces marketplace Partakus"
+    columns:
+      - name: listing_id
+        description: "Identifiant unique de l'annonce"
+        tests:
+          - not_null
+          - unique
+      - name: asking_price_eur
+        description: "Prix demandé en euros"
+        tests:
+          - not_null
+      - name: condition
+        description: "État de la pièce"
+        tests:
+          - accepted_values:
+              values: ["new", "reconditioned", "used"]
+
+  - name: stg_vehicle_recalls
+    description: "Staging rappels véhicules NHTSA"
+    columns:
+      - name: recall_id
+        description: "Identifiant unique du rappel NHTSA"
+        tests:
+          - not_null
+          - unique
+      - name: severity
+        description: "Sévérité calculée du rappel"
+        tests:
+          - accepted_values:
+              values: ["critique", "majeur", "modéré", "mineur"]

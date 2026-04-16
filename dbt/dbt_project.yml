@@ -1,0 +1,38 @@
+name: "automarket"
+version: "1.0.0"
+config-version: 2
+
+profile: "automarket"
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  automarket:
+    staging:
+      +materialized: view
+      +schema: staging
+      +tags: ["staging"]
+    intermediate:
+      +materialized: table
+      +schema: intermediate
+      +tags: ["intermediate"]
+    marts:
+      +materialized: table
+      +schema: marts
+      +tags: ["marts", "gold"]
+
+vars:
+  bronze_bucket: "automarket-bronze"
+  silver_bucket: "automarket-silver"
+  gold_bucket: "automarket-gold"
+  min_quality_score: 0.6
+  price_outlier_threshold: 5.0  # seuil IQR pour détection prix aberrants
