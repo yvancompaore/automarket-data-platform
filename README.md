@@ -10,6 +10,8 @@ Couvre l'intégralité du cycle de vie de la donnée : ingestion → lake → tr
 
 ## Architecture
 
+![Architecture](docs/screenshots/architecture.png)
+
 ```
 [Sources]
   ├── NHTSA API          — rappels véhicules (données réelles)
