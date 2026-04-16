@@ -1,5 +1,8 @@
 # AutoMarket Data Platform
 
+![Vue d'ensemble](docs/screenshots/01_overview.png)
+
+
 Pipeline data end-to-end pour l'analyse du marché après-vente automobile.  
 Couvre l'intégralité du cycle de vie de la donnée : ingestion → lake → transformation → analytics.
 
@@ -36,6 +39,18 @@ Couvre l'intégralité du cycle de vie de la donnée : ingestion → lake → tr
 | Analytique | DuckDB (local) → dbt + Athena (prod) |
 | Infrastructure | Terraform (AWS S3, IAM, Glue) |
 | Dashboard | Streamlit + Plotly |
+
+## Screenshots
+
+| Vue d'ensemble | Analyse Prix |
+|---|---|
+| ![overview](docs/screenshots/01_overview.png) | ![pricing](docs/screenshots/02_pricing.png) |
+
+| Couverture Catalogue | Performance Fournisseurs |
+|---|---|
+| ![coverage](docs/screenshots/03_coverage.png) | ![suppliers](docs/screenshots/04_suppliers.png) |
+
+---
 
 ## Use cases métier
 
